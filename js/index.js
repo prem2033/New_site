@@ -11,9 +11,9 @@ request.open('GET', "http://newsapi.org/v2/top-headlines?country=us&apiKey=c5489
 console.log("hello END");
 
 request.onload = function () {
-    if (this.status === 200) {    
+    if (this.status === 200) {
         let data = JSON.parse(this.responseText);
-        let articles = data.articles;    
+        let articles = data.articles;
         let newsHTML = "";
         articles.forEach(function (element, index) {
             // let text = `<div class="col mb-4">
@@ -28,9 +28,9 @@ request.onload = function () {
             //                     </div>
             //                 </div>
             //             </div>`;
-            let desc=element.description;
-            if(desc) {
-            let text=`<a class="anchor" href="www.google.com">
+            let desc = element.description;
+            if (desc) {
+                let text = `
             <div class="card mb-2 mt-2 full-card">
                 <div class="card-body complete-card">
                     <div class="card-contains ">
@@ -38,14 +38,14 @@ request.onload = function () {
                       <div class="card-body news-text">
                           <h6 class="text-justify bold-font news-heading read-cursor">${element["title"]}</h6>
                           <p class="text-justify  font-weight-normal news-description read-cursor">${element["description"]}</p>
-                          <div class=" font-weight-normal read-more"><small class="under-line ">Read More</small></div>
+                          <div class=" font-weight-normal read-more"><small class="under-line "><a class="anchor" href="${element["url"]}" target="_blank">Read More</a></small></div>
                           <div class=" font-weight-normal last-update"><small class="text-muted">Last Upadted ${element["publishedAt"]}</small></div>
                       </div>
                     </div>            
                 </div>
-              </div></a>`;
+              </div>`;
 
-            newsHTML += text;
+                newsHTML += text;
             }
         });
 
