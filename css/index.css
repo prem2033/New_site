@@ -48,8 +48,14 @@ opacity: 1;
 }
 .also-read-card{
     width: 25%;
-    /* border: 1px solid mediumblue; */
+    height: auto;
     position: relative;
+   
+}
+.also-read-card:hover{
+    margin: 0px;
+    box-shadow: 5px 10px 30px #888888;
+    
 }
 .also-read-card-text {
     position: absolute;
