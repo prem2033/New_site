@@ -1,13 +1,8 @@
-console.log("hello");
-let link = "https://newsapi.org/v2/top-headlines?country=us&apiKey=c5489bc356f14c8dadd9c507807d2cb4";
-let apiKey = 'c5489bc356f14c8dadd9c507807d2cb4'
-let country = 'us';
-let new_link = `https://newsapi.org/v2/top-headlines?country=${apiKey}&apiKey=${apiKey}`;
 // Grab the news container
 let newsContainer = document.getElementById('news-container');
 // Create an ajax get request
 const request = new XMLHttpRequest();
-request.open('GET', "http://newsapi.org/v2/top-headlines?country=in&apiKey=c5489bc356f14c8dadd9c507807d2cb4", true);
+request.open('GET', "https://newsapi.org/v2/top-headlines?q=trump&apiKey=c5489bc356f14c8dadd9c507807d2cb4", true);
 console.log("hello END");
 
 request.onload = function () {
@@ -50,6 +45,3 @@ request.onload = function () {
     }
 }
 request.send();
-const trumHead="https://newsapi.org/v2/top-headlines?q=trump&apiKey=c5489bc356f14c8dadd9c507807d2cb4";
-const bbcheadlines="https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=c5489bc356f14c8dadd9c507807d2cb4";
-const bitcoin="https://newsapi.org/v2/everything?q=bitcoin&apiKey=c5489bc356f14c8dadd9c507807d2cb4";
