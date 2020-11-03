@@ -41,7 +41,9 @@ request.onload = function () {
         newsContainer.innerHTML = newsHTML;
     }
     else {
-        console.log("error while getting the data")
+        console.log("error while getting the data"); 
+        danger.classList.add("alert-danger");
+        danger.innerText="OOPS!! we encounter some error,Please reload the page......";
     }
 }
 request.send();
