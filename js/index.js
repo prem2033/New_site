@@ -1,4 +1,3 @@
-console.log("hello");
 let link = "https://newsapi.org/v2/top-headlines?country=us&apiKey=c5489bc356f14c8dadd9c507807d2cb4";
 let apiKey = 'c5489bc356f14c8dadd9c507807d2cb4'
 let country = 'us';
@@ -42,13 +41,7 @@ request.onload = function () {
         newsContainer.innerHTML = newsHTML;
     }
     else {
-        document.getElementById("danger").innerHTML=`<div class="alert alert-warning alert-dismissible fade show" role="alert">
-        <strong>Holy guacamole!</strong> You should check in on some of those fields below.
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>`;
-        
+        console.log("error while getting the data")
     }
 }
 request.send();
