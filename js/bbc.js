@@ -3,10 +3,10 @@ let newsContainer = document.getElementById('news-container');
 // Create an ajax get request
 const request = new XMLHttpRequest();
 request.open('GET', "https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=c5489bc356f14c8dadd9c507807d2cb4", true);
-console.log("hello END");
-
+let danger=document.getElementById('danger');
 request.onload = function () {
     if (this.status === 200) {
+      danger.style.display="none";
         let data = JSON.parse(this.responseText);
         let articles = data.articles;
         let newsHTML = "";
@@ -43,5 +43,5 @@ request.onload = function () {
       </div>`;
         
     }
-}
+  }
 request.send();

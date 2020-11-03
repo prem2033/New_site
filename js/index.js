@@ -5,13 +5,15 @@ let country = 'us';
 let new_link = `https://newsapi.org/v2/top-headlines?country=${apiKey}&apiKey=${apiKey}`;
 // Grab the news container
 let newsContainer = document.getElementById('news-container');
+let danger=document.getElementById('danger');
+
 // Create an ajax get request
 const request = new XMLHttpRequest();
 request.open('GET', "http://newsapi.org/v2/top-headlines?country=in&apiKey=c5489bc356f14c8dadd9c507807d2cb4", true);
-console.log("hello END");
 
 request.onload = function () {
     if (this.status === 200) {
+      danger.style.display="none";
         let data = JSON.parse(this.responseText);
         let articles = data.articles;
         let newsHTML = "";
@@ -50,6 +52,3 @@ request.onload = function () {
     }
 }
 request.send();
-const trumHead="https://newsapi.org/v2/top-headlines?q=trump&apiKey=c5489bc356f14c8dadd9c507807d2cb4";
-const bbcheadlines="https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=c5489bc356f14c8dadd9c507807d2cb4";
-const bitcoin="https://newsapi.org/v2/everything?q=bitcoin&apiKey=c5489bc356f14c8dadd9c507807d2cb4";
