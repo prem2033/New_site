@@ -8,7 +8,7 @@ let danger=document.getElementById('danger');
 
 // Create an ajax get request
 const request = new XMLHttpRequest();
-request.open('GET', "http://newsapi.org/v2/top-headlines?country=in&apiKey=c5489bc356f14c8dadd9c507807d2cb4", true);
+request.open('GET', "https://newsapi.org/v2/top-headlines?country=in&apiKey=c5489bc356f14c8dadd9c507807d2cb4", true);
 
 request.onload = function () {
     if (this.status === 200) {
