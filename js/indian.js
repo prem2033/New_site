@@ -1,15 +1,9 @@
-let link = "https://newsapi.org/v2/top-headlines?country=us&apiKey=c5489bc356f14c8dadd9c507807d2cb4";
-let apiKey = 'c5489bc356f14c8dadd9c507807d2cb4'
-let country = 'us';
-let new_link = `https://newsapi.org/v2/top-headlines?country=${apiKey}&apiKey=${apiKey}`;
 // Grab the news container
 let newsContainer = document.getElementById('news-container');
-let danger=document.getElementById('danger');
-
 // Create an ajax get request
 const request = new XMLHttpRequest();
-request.open('GET', "https://gnews.io/api/v4/search?q=example&token=a3e98e8a23509a4afbe66c1bfb65c908", true);
-
+request.open('GET', "https://newsapi.org/v2/top-headlines?country=in&apiKey=c5489bc356f14c8dadd9c507807d2cb4", true);
+let danger=document.getElementById('danger');
 request.onload = function () {
     if (this.status === 200) {
       danger.style.display="none";
@@ -23,7 +17,7 @@ request.onload = function () {
             <div class="card mb-2 mt-2 full-card">
                 <div class="card-body complete-card">
                     <div class="card-contains ">
-                      <img class="" src="${element["image"]}" class="img-fluid" alt="image not found" width="200px" height="200px">
+                      <img class="" src="${element["urlToImage"]}" class="img-fluid" alt="image not found" width="200px" height="200px">
                       <div class="card-body news-text">
                           <h6 class="text-justify bold-font news-heading read-cursor">${element["title"]}</h6>
                           <p class="text-justify  font-weight-normal news-description read-cursor">${element["description"]}</p>
@@ -43,7 +37,7 @@ request.onload = function () {
     else {
         console.log("error while getting the data"); 
         danger.classList.add("alert-danger");
-        danger.innerText="OOPS!! we encounter some error,Please reload the page......";
+        danger.innerText="OOPS!! we encounter some error,Please reload the page......";       
     }
 }
 request.send();
