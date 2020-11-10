@@ -1,5 +1,5 @@
 console.log("validate form");
-function validateForm(e) {   
+function validateForm() {   
     let name = document.getElementById("name").value;
     let phone = document.getElementById("phone").value;
     let email = document.getElementById("email").value;//queryText
@@ -41,6 +41,7 @@ function validateForm(e) {
        return true;
      }
      else {
+      document.getElementById('email').style.boxShadow="none";
        document.getElementById('email').style.border="1px solid red";
        return false;
      }
@@ -55,6 +56,7 @@ function ValidatePhoneNumber(phone) {
       return true;
     }
     else {
+      document.getElementById('phone').style.boxShadow="none"; 
       document.getElementById('phone').style.border="1px solid red";
       return false;
     }
@@ -64,10 +66,12 @@ function ValidatePhoneNumber(phone) {
 function validateName(name) {
     var namregx = /^[A-Za-z\s]+$/;
     if (name.match(namregx)) {
-      document.getElementById('name').style.removeProperty('border');     
+      document.getElementById('name').style.removeProperty('border'); 
+        
       return true;
     } else {
       //document.getElementById('name').style.boxShadow = "0 0 10px red";
+      document.getElementById('name').style.boxShadow="none"; 
       document.getElementById('name').style.border="1px solid red"
       return false;
     }
@@ -75,10 +79,13 @@ function validateName(name) {
 
   function validateQuery(query){
       if(query===""){
+        document.getElementById('queryText').style.boxShadow="none"; 
         document.getElementById('queryText').style.border="1px solid red"
+        
           return false;
       }else{
-        document.getElementById('queryText').style.removeProperty('box-shadow');
+       
+        document.getElementById('queryText').style.removeProperty('border');
           return true;
       }
   }
