@@ -1,39 +1,44 @@
-console.log("validate form");
 let submit=document.getElementById('submit');
+let nameflag = false;
+let phoneflag = false;
+let emailflag = false;
+let queryStringflag=false;
 submit.addEventListener('click',(e)=>{
   e.preventDefault();
  validateForm();
-  console.log("lets submit");
 })
 function validateForm() {   
-    let name = document.getElementById("name").value;
-    let phone = document.getElementById("phone").value;
-    let email = document.getElementById("email").value;//queryText
-    let querytext=document.getElementById('queryText').value;
-    let nameflag = false;
-    let phoneflag = false;
-    let emailflag = false;
-    let queryStringflag=false;
-    if (validateName(name.trim())) { 
-      nameflag = true;
-    }
-    if (ValidatePhoneNumber(phone.trim())) {
-      phoneflag = true;
-    }
-    if (ValidateEmail(email.trim())) {
-      emailflag = true;
-    }
-    if(validateQuery(querytext.trim())){
-        queryStringflag=true;
-    }
-    
+    let name = document.getElementById("name");
+    let phone = document.getElementById("phone");
+    let email = document.getElementById("email");//queryText
+    let query=document.getElementById('queryText');
    
+    if (validateName(name)){ 
+      nameflag = true;
+    }else{
+      nameflag = false;
+    }
+    if (ValidatePhoneNumber(phone)) {
+      phoneflag = true;
+    }else{
+      phoneflag = false;
+    }
+    if (ValidateEmail(email)) {
+      emailflag = true;
+    }else{
+      emailflag = false;
+    }
+    if(validateQuery(query)){
+        queryStringflag=true;
+    }else{
+      queryStringflag = false;
+    }    
     if (nameflag && phoneflag && emailflag && queryStringflag) {
         successMessage();
-        document.getElementById("name").value="";
-        document.getElementById("phone").value="";
-        email = document.getElementById("email").value="";
-        document.getElementById('queryText').value="";
+        name.value="";
+        phone.value="";
+        email.value="";
+        query.value="";
       return true;
     }
     else {
@@ -44,15 +49,17 @@ function validateForm() {
 
 
   //valiadte email
-  function ValidateEmail(inputText) {
-     let mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-     if (inputText.match(mailformat)) {
-        document.getElementById('email').style.removeProperty('border');
+  function ValidateEmail(email) {
+     let mailformat =/^([_\-\.0-9a-zA-Z]+)@([_\-\.0-9a-zA-Z]+)\.([a-zA-Z]){2,7}$/;
+     if (email.value.trim().match(mailformat)) {
+        //document.getElementById('email').style.removeProperty('border');
+        email.classList.remove('is-invalid');
        return true;
      }
      else {
-      document.getElementById('email').style.boxShadow="none";
-       document.getElementById('email').style.border="1px solid red";
+      //document.getElementById('email').style.boxShadow="none";
+       //document.getElementById('email').style.border="1px solid red";
+       email.classList.add('is-invalid');
        return false;
      }
     
@@ -61,13 +68,15 @@ function validateForm() {
   //validate phone number
 function ValidatePhoneNumber(phone) {
     var phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
-    if (phone.match(phoneno)) {
-      document.getElementById('phone').style.removeProperty('border');
+    if (phone.value.trim().match(phoneno)) {
+      //document.getElementById('phone').style.removeProperty('border');
+      phone.classList.remove('is-invalid');
       return true;
     }
     else {
-      document.getElementById('phone').style.boxShadow="none"; 
-      document.getElementById('phone').style.border="1px solid red";
+      //document.getElementById('phone').style.boxShadow="none"; 
+      //document.getElementById('phone').style.border="1px solid red";
+      phone.classList.add('is-invalid');
       return false;
     }
   }
@@ -75,27 +84,28 @@ function ValidatePhoneNumber(phone) {
 //valiadte name
 function validateName(name) {
     var namregx = /^[A-Za-z\s]+$/;
-    if (name.match(namregx)) {
-      document.getElementById('name').style.removeProperty('border'); 
-        
+    if (name.value.trim().match(namregx)) {
+      //document.getElementById('name').style.removeProperty('border'); 
+      name.classList.remove('is-invalid');
       return true;
     } else {
-      //document.getElementById('name').style.boxShadow = "0 0 10px red";
-      document.getElementById('name').style.boxShadow="none"; 
-      document.getElementById('name').style.border="1px solid red"
+      // document.getElementById('name').style.boxShadow="none"; 
+      // document.getElementById('name').style.border="1px solid red"
+      name.classList.add('is-invalid');
       return false;
     }
   }
 
   function validateQuery(query){
-      if(query===""){
-        document.getElementById('queryText').style.boxShadow="none"; 
-        document.getElementById('queryText').style.border="1px solid red"
-        
+      if(query.value.trim()===""){
+        // document.getElementById('queryText').style.boxShadow="none"; 
+        // document.getElementById('queryText').style.border="1px solid red"
+        query.classList.add('is-invalid');
           return false;
       }else{
        
-        document.getElementById('queryText').style.removeProperty('border');
+        //document.getElementById('queryText').style.removeProperty('border');
+        query.classList.remove('is-invalid');
           return true;
       }
   }
@@ -118,3 +128,23 @@ function validateName(name) {
       </button>
     </div>`;
   }
+//blur event on form
+  let email=document.getElementById('email');
+  email.addEventListener('blur',()=>{    
+    ValidateEmail(email);
+  })
+
+  let phone=document.getElementById('phone');
+  phone.addEventListener('blur',()=>{  
+    ValidatePhoneNumber(phone) ;
+  })
+
+  let name=document.getElementById('name');
+  name.addEventListener('blur',()=>{    
+    validateName(name);
+  })
+
+  let query=document.getElementById('queryText');
+  query.addEventListener('blur',()=>{    
+    validateQuery(queryText);
+  })
