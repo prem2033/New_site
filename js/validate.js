@@ -1,4 +1,10 @@
 console.log("validate form");
+let submit=document.getElementById('submit');
+submit.addEventListener('click',(e)=>{
+  e.preventDefault();
+ validateForm();
+  console.log("lets submit");
+})
 function validateForm() {   
     let name = document.getElementById("name").value;
     let phone = document.getElementById("phone").value;
@@ -24,6 +30,10 @@ function validateForm() {
    
     if (nameflag && phoneflag && emailflag && queryStringflag) {
         successMessage();
+        document.getElementById("name").value="";
+        document.getElementById("phone").value="";
+        email = document.getElementById("email").value="";
+        document.getElementById('queryText').value="";
       return true;
     }
     else {
@@ -92,7 +102,7 @@ function validateName(name) {
   function successMessage(){
     let success=document.getElementById('success-error');
     success.innerHTML=`<div class="alert alert-success alert-dismissible fade show alert-custom" role="alert">
-    <strong></strong> Submit Successfully.you may now close this window.
+    <strong></strong> Submit Successfully!!you may now close this window.
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
